@@ -1,13 +1,84 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.alunos {
+  background-color: #e4edf2;
+  color: #5477a5;
+}
+.nome-alunos {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+hr {
+  color: aqua;
+}
+
+#pop {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  padding: 10px;
+  background-color: #e4edf2;
+  display: flex;
+}
+.pop_card {
+  display: inline-block;
+}
+
+.card_escolas {
+  width: 20vw;
+  height: 28vw;
+  justify-content: space-around;
+  background-color: #e4edf2;
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1vw;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.card_escolas_posicao {
+  width: 20vw;
+  height: 20px;
+  justify-content: space-around;
+  background-color: #e4edf2;
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1vw;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.escolas {
+  border: black solid 0px;
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 90%;
+  margin: 0 auto;
 }
