@@ -8,7 +8,7 @@ import Hufflepuff from "./img/escola4.png";
 import Nota from "./img/nota.png";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addNumber, subNumber } from "./store/modules/Result/actions";
+//import { addNumber, subNumber } from "./store/modules/Result/actions";
 import { connect } from "react-redux";
 
 ///
