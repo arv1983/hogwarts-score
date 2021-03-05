@@ -10,16 +10,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addNumber, subNumber } from "./store/modules/Result/actions";
 import { connect } from "react-redux";
-import * as yup from "yup";
 
 ///
 import { addToCartThunk, subToCartThunk } from "./store/modules/Result/thunk";
 
 function App() {
-  const schema = yup.object().shape({
-    valor: yup.number().required().positive().integer(),
-  });
-
   const [dados, setDados] = useState({});
   const resultado = useSelector((state) => state.result);
 
