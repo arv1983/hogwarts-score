@@ -12,13 +12,18 @@
 // };
 
 // export default resultReducer;
-
-const defaultState = [
+const defaultState = JSON.parse(localStorage.getItem("notas")) || [
   { escola: "Slytherin", nota: 200 },
   { escola: "Ravenclaw", nota: 300 },
   { escola: "Gryffindor", nota: 300 },
   { escola: "Hufflepuff", nota: 300 },
 ];
+// const defaultState = [
+//   { escola: "Slytherin", nota: 200 },
+//   { escola: "Ravenclaw", nota: 300 },
+//   { escola: "Gryffindor", nota: 300 },
+//   { escola: "Hufflepuff", nota: 300 },
+// ];
 
 const resultReducer = (state = defaultState, action) => {
   console.log(action);

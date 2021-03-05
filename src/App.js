@@ -5,23 +5,32 @@ import Slytherin from "./img/escola1.png";
 import Ravenclow from "./img/escola2.png";
 import Gryffindor from "./img/escola3.png";
 import Hufflepuff from "./img/escola4.png";
+import Nota from "./img/nota.png";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addNumber, subNumber } from "./store/modules/Result/actions";
 import { connect } from "react-redux";
+import * as yup from "yup";
+
+///
+import { addToCartThunk, subToCartThunk } from "./store/modules/Result/thunk";
 
 function App() {
+  const schema = yup.object().shape({
+    valor: yup.number().required().positive().integer(),
+  });
+
   const [dados, setDados] = useState({});
   const resultado = useSelector((state) => state.result);
 
   const dispatch = useDispatch();
   connect(resultado);
   console.log("RESULTADO" + JSON.stringify(resultado));
-
+  localStorage.setItem("notas", JSON.stringify(resultado));
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        "http://hp-api.herokuapp.com/api/characters/students"
+        "https://hp-api.herokuapp.com/api/characters/students"
       );
       setDados(result);
       console.log(result.data);
@@ -42,11 +51,11 @@ function App() {
           <img
             src={dados.data[x].image}
             alt={dados.data[x].name}
-            width="200px"
-            height="250px"
+            width="180px"
+            height="230px"
           />
         </div>
-        <div>
+        <div className="div_add_pontos">
           {dados.data[x].house}
           <br />
           {dados.data[x].name}
@@ -54,11 +63,30 @@ function App() {
           <font size="2" face="Verdana" color="#0000FF" onClick={() => fecha()}>
             [X]
           </font>
+          <input name="valor" id="valor2" type="number"></input>
           <br />
-          <button onClick={() => dispatch(addNumber(10, dados.data[x].house))}>
+          <button
+            onClick={() =>
+              dispatch(
+                addToCartThunk(
+                  parseFloat(document.getElementById("valor2").value),
+                  dados.data[x].house
+                )
+              )
+            }
+          >
             Gain
           </button>
-          <button onClick={() => dispatch(subNumber(10, dados.data[x].house))}>
+          <button
+            onClick={() =>
+              dispatch(
+                subToCartThunk(
+                  parseFloat(document.getElementById("valor2").value),
+                  dados.data[x].house
+                )
+              )
+            }
+          >
             Lose
           </button>
         </div>
@@ -93,26 +121,26 @@ function App() {
         <div className="card_escolas" style={{ order: -resultado[0].nota }}>
           {resultado[0].escola}
           <img src={Slytherin} width="85%" height="70%" alt="Slytherin" />
-          {resultado[0].nota}
+          <font style={{ fontSize: "4vw" }}>{resultado[0].nota}</font>
         </div>
 
         <div className="card_escolas" style={{ order: -resultado[1].nota }}>
           {resultado[1].escola}
           <img src={Ravenclow} width="85%" height="70%" alt="Ravenclow" />
 
-          {resultado[1].nota}
+          <font style={{ fontSize: "4vw" }}>{resultado[1].nota}</font>
         </div>
 
         <div className="card_escolas" style={{ order: -resultado[2].nota }}>
           {resultado[2].escola}
           <img src={Gryffindor} width="85%" height="70%" alt="Gryffindor" />
-          {resultado[2].nota}
+          <font style={{ fontSize: "4vw" }}>{resultado[2].nota}</font>
         </div>
 
         <div className="card_escolas" style={{ order: -resultado[3].nota }}>
           {resultado[3].escola}
           <img src={Hufflepuff} width="85%" height="70%" alt="Hufflepuff" />
-          {resultado[3].nota}
+          <font style={{ fontSize: "4vw" }}>{resultado[3].nota}</font>
         </div>
       </div>
       <br />
@@ -128,7 +156,7 @@ function App() {
                       {dados.data[index].house}
                     </div>
                     <div style={{ width: "10%" }} onClick={() => click(index)}>
-                      editar
+                      <img src={Nota} alt="editar" width="30vw" />
                     </div>
                   </div>
 

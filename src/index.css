@@ -28,8 +28,8 @@ hr {
 }
 
 #pop {
-  width: 400px;
-  height: 200px;
+  width: 360px;
+  height: 255px;
   position: absolute;
   z-index: 100;
   top: 50%;
@@ -59,7 +59,7 @@ hr {
 }
 .card_escolas_posicao {
   width: 20vw;
-  height: 20px;
+  height: 4vw;
   justify-content: space-around;
   background-color: #e4edf2;
   display: flex;
@@ -69,6 +69,7 @@ hr {
   margin: 1vw;
   margin-top: 0px;
   margin-bottom: 0px;
+  font-size: 3.5vw;
 }
 
 .escolas {
@@ -78,7 +79,14 @@ hr {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-
+  font-size: 3.5vw;
   width: 90%;
   margin: 0 auto;
+}
+
+.div_add_pontos {
+  text-align: center;
+  width: 180px;
+  height: 230px;
+  background-color: aquamarine;
 }
