@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { addToCartThunk, subToCartThunk } from "./store/modules/Result/thunk";
 
 function App() {
-  const [dados, setDados] = useState({});
+  const [dados, setDados] = useState(0);
   const resultado = useSelector((state) => state.result);
 
   const dispatch = useDispatch();
@@ -34,75 +34,118 @@ function App() {
     fetchData();
   }, []);
 
+  const botao_add = {
+    color: "#fff",
+    backgroundColor: "#49e1cc",
+    border: "0px solid black",
+    height: "23px",
+    width: "65px",
+    margin: "10px",
+  };
+
+  const botao_sub = {
+    color: "#fff",
+    backgroundColor: "#fea28b",
+    border: "0px solid black",
+    height: "23px",
+    width: "65px",
+    margin: "10px",
+  };
+
   function fecha() {
     console.log("fecha div");
-    document.getElementById("pop").style.display = "none";
+    var child = document.getElementById("pop");
+    child.parentNode.removeChild(child);
   }
 
+  function mostra_div_fechar(x) {
+    var child = document.getElementById("resultado_pop");
+    child.parentNode.removeChild(child);
+    document.getElementById("resultado_pos_input").style.display = "block";
+    document.getElementById("resultado_pos_input").innerHTML += x;
+  }
   function click(x) {
     render(
       <div id="pop">
-        <div>
+        <div id="pop_card">
           <img
             src={dados.data[x].image}
             alt={dados.data[x].name}
             width="180px"
             height="230px"
           />
-        </div>
-        <div className="div_add_pontos">
-          {dados.data[x].house}
-          <br />
-          {dados.data[x].name}
 
-          <font size="2" face="Verdana" color="#0000FF" onClick={() => fecha()}>
-            [X]
-          </font>
-          <input name="valor" id="valor2" type="number"></input>
-          <br />
-          <button
-            onClick={() =>
-              dispatch(
-                addToCartThunk(
-                  parseFloat(document.getElementById("valor2").value),
-                  dados.data[x].house
-                )
-              )
-            }
-          >
-            Gain
-          </button>
-          <button
-            onClick={() =>
-              dispatch(
-                subToCartThunk(
-                  parseFloat(document.getElementById("valor2").value),
-                  dados.data[x].house
-                )
-              )
-            }
-          >
-            Lose
-          </button>
+          <div className="div_add_pontos" id="add_pontos">
+            {dados.data[x].house}
+            <br />
+            {dados.data[x].name}
+
+            <font
+              size="2"
+              face="Verdana"
+              color="#0000FF"
+              onClick={() => fecha()}
+            >
+              [X]
+            </font>
+            <br />
+            <br />
+
+            <div id="resultado_pop">
+              <input name="valor" id="valor2" type="number"></input>
+              <br />
+              <button
+                style={botao_add}
+                onClick={() => {
+                  dispatch(
+                    addToCartThunk(
+                      parseFloat(document.getElementById("valor2").value),
+                      dados.data[x].house
+                    )
+                  );
+                  mostra_div_fechar(document.getElementById("valor2").value);
+                }}
+              >
+                Gain
+              </button>
+              <button
+                style={botao_sub}
+                onClick={() => {
+                  dispatch(
+                    subToCartThunk(
+                      parseFloat(document.getElementById("valor2").value),
+                      dados.data[x].house
+                    )
+                  );
+                  mostra_div_fechar(document.getElementById("valor2").value);
+                  document.getElementById("resultado_pos_input").style.display =
+                    "block";
+                }}
+              >
+                Lose
+              </button>
+            </div>
+            <div id="resultado_pos_input" style={{ display: "none" }}>
+              <br /> <br />
+              <button onClick={() => fecha()}>DONE</button>
+              <font
+                size="2"
+                face="Verdana"
+                color="#0000FF"
+                onClick={() => fecha()}
+              >
+                [X]
+              </font>
+            </div>
+          </div>
         </div>
       </div>
     );
+    document.getElementById("pop").style.display = "block";
   }
   console.log(resultado);
   return (
     <>
-      {/*
-      //document.getElementById("pop").style.display = "block";
-      <div id="pop">
-        <tr>
-          <td>
-            <font size="2" face="Verdana" color="#0000FF">
-              Fechar[X]
-            </font>
-          </td>
-        </tr>
-      
-    </div> */}
       <div className="escolas">
         <div className="card_escolas_posicao">1# Lugar</div>
 

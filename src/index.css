@@ -28,8 +28,20 @@ hr {
 }
 
 #pop {
+  position: fixed;
+  display: flex;
+  z-index: 100; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0, 0.4); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#pop_card {
   width: 360px;
-  height: 255px;
+  height: 230px;
   position: absolute;
   z-index: 100;
   top: 50%;
@@ -39,9 +51,7 @@ hr {
   padding: 10px;
   background-color: #e4edf2;
   display: flex;
-}
-.pop_card {
-  display: inline-block;
+  color: #3461a4;
 }
 
 .card_escolas {
@@ -57,6 +67,10 @@ hr {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+input {
+  width: 120px;
+}
 .card_escolas_posicao {
   width: 20vw;
   height: 4vw;
@@ -70,6 +84,7 @@ hr {
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 3.5vw;
+  color: #3461a4;
 }
 
 .escolas {
@@ -82,11 +97,13 @@ hr {
   font-size: 3.5vw;
   width: 90%;
   margin: 0 auto;
+  color: #3461a4;
 }
 
 .div_add_pontos {
   text-align: center;
   width: 180px;
   height: 230px;
-  background-color: aquamarine;
+  background-color: #e4edf2;
+  font-size: 25px;
 }
