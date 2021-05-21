@@ -1,9 +1,8 @@
-import { createStore, combineReducers } from "redux";
-import resultReducer from "./modules/Result/reducer";
-import { applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { ScoreHandler } from "./modules/housesScore/reducers";
 import thunk from "redux-thunk";
 
-const reducers = combineReducers({ result: resultReducer });
+const reducers = combineReducers({ list: ScoreHandler });
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
